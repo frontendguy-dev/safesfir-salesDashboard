@@ -23,13 +23,6 @@ export default function Header() {
         <div className="header-nav ms-auto">
           <HeaderNotificationNav />
         </div>
-        <div className="header-nav ms-2">
-          <HeaderProfileNav />
-        </div>
-      </Container>
-      <div className="header-divider border-top my-2 mx-sm-n2" />
-      <Container fluid>
-        <Breadcrumb />
       </Container>
     </header>
   )
