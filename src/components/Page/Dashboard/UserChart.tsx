@@ -23,7 +23,7 @@ Chart.register(
   Filler
 );
 
-export default function UserChart({ salesData }) {
+export default function UserChart({ salesData }: any) {
   return (
     <Line
       options={{
