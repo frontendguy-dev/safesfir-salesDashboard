@@ -1,32 +1,21 @@
-"use client";
+'use client'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import React, { useEffect, useState } from "react";
-import classNames from "classnames";
-import { Button } from "react-bootstrap";
-import { useSidebar } from "@/components/Layout/Dashboard/SidebarProvider";
+import React from 'react'
+import classNames from 'classnames'
+import { useSidebar } from '@/components/Layout/Dashboard/SidebarProvider'
 
 export default function Sidebar({ children }: { children: React.ReactNode }) {
-  const [isNarrow, setIsNarrow] = useState(true);
-
   const {
     showSidebarState: [isShowSidebar],
-  } = useSidebar();
-
-  const toggleIsNarrow = () => {
-    const newValue = !isNarrow;
-    setIsNarrow(newValue);
-  };
+  } = useSidebar()
 
   return (
     <div
       className={classNames(
-        "sidebar d-flex flex-column position-fixed h-100 border-end",
+        'sidebar d-flex flex-column position-fixed h-100 border-end',
         {
-          "sidebar-narrow": isNarrow,
           show: isShowSidebar,
-        }
+        },
       )}
       id="sidebar"
     >
@@ -43,5 +32,5 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
 
       <div className="sidebar-nav flex-fill border-top">{children}</div>
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,8 +9,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
-import { Bar } from "react-chartjs-2";
+} from 'chart.js'
+import { Bar } from 'react-chartjs-2'
 
 ChartJS.register(
   CategoryScale,
@@ -18,14 +18,14 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
-);
+  Legend,
+)
 
 export const options = {
   plugins: {
     title: {
       display: true,
-      text: "Sales by category(values/$1k)",
+      text: 'Sales by category(values/$1k)',
     },
   },
   responsive: true,
@@ -37,31 +37,31 @@ export const options = {
       stacked: true,
     },
   },
-};
+}
 
-const labels = ["DoorDash", "GrubHub", "Smile dining", "Uber Eats"];
+const labels = ['DoorDash', 'GrubHub', 'Smile dining', 'Uber Eats']
 
 export const data = {
   labels,
   datasets: [
     {
-      label: "Fried rice",
+      label: 'Fried rice',
       data: [4.836, 6.341, 0.92, 1.473],
-      backgroundColor: "rgb(255, 99, 132)",
+      backgroundColor: 'rgb(255, 99, 132)',
     },
     {
-      label: "Apetizer",
+      label: 'Apetizer',
       data: [28.613, 19.293, 3.457, 5.726],
-      backgroundColor: "rgb(75, 192, 192)",
+      backgroundColor: 'rgb(75, 192, 192)',
     },
     {
-      label: "Kid's Menu",
+      label: 'Kid\'s Menu',
       data: [1.315, 1.665, 0.25, 0.468],
-      backgroundColor: "rgb(53, 162, 235)",
+      backgroundColor: 'rgb(53, 162, 235)',
     },
   ],
-};
+}
 
 export function StackedChart() {
-  return <Bar options={options} data={data} />;
+  return <Bar options={options} data={data} />
 }

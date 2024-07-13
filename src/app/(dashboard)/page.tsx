@@ -1,71 +1,63 @@
-import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowDown,
-  faArrowUp
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  Card,
-  CardBody,
-  CardHeader,
-} from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
+import { Card, CardBody, CardHeader } from 'react-bootstrap'
 import {
   faFacebookF,
   faLinkedinIn,
   faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import React from "react";
-import UserChart from "@/components/Page/Dashboard/UserChart";
-import { getDictionary } from "@/locales/dictionary";
-import { categorySales, totalSales } from "@/constants/data";
-import { StackedChart } from "@/components/Page/Dashboard/StackedChart";
+} from '@fortawesome/free-brands-svg-icons'
+import React from 'react'
+import UserChart from '@/components/Page/Dashboard/UserChart'
+import { getDictionary } from '@/locales/dictionary'
+import { categorySales, totalSales } from '@/constants/data'
+import { StackedChart } from '@/components/Page/Dashboard/StackedChart'
 
 export default async function Page() {
-  const dict = await getDictionary();
+  const dict = await getDictionary()
 
-  const tpSalesCard = () => {
-    return (
-      <div className="row">
-        {totalSales.map((data) => (
-          <div className="col-sm-6 col-lg-3">
-            <Card
-              bg={data.deviation > 0 ? "success" : "primary"}
-              text="white"
-              className="mb-4"
-            >
-              <CardHeader>{data.name}</CardHeader>
-              <CardBody className="pb-0 d-flex justify-content-between align-items-start">
-                <div>
-                  <div className="fs-4 fw-semibold">
-                    {data.totalSales}
-                    <span className="fs-6 ms-2 fw-normal">
-                      ({data.deviation}%
-                      {data.deviation < 0 ? (
-                        <FontAwesomeIcon icon={faArrowDown} fixedWidth />
-                      ) : (
-                        <FontAwesomeIcon icon={faArrowUp} fixedWidth />
-                      )}
-                      )
-                    </span>
-                  </div>
+  const tpSalesCard = () => (
+    <div className="row">
+      {totalSales.map((data) => (
+        <div className="col-sm-6 col-lg-3" key={Math.random()}>
+          <Card
+            bg={data.deviation > 0 ? 'success' : 'primary'}
+            text="white"
+            className="mb-4"
+          >
+            <CardHeader>{data.name}</CardHeader>
+            <CardBody className="pb-0 d-flex justify-content-between align-items-start">
+              <div>
+                <div className="fs-4 fw-semibold">
+                  {data.totalSales}
+                  <span className="fs-6 ms-2 fw-normal">
+                    (
+                    {data.deviation}
+                    %
+                    {data.deviation < 0 ? (
+                      <FontAwesomeIcon icon={faArrowDown} fixedWidth />
+                    ) : (
+                      <FontAwesomeIcon icon={faArrowUp} fixedWidth />
+                    )}
+                    )
+                  </span>
                 </div>
-              </CardBody>
-              <div className="mt-3 mx-3" style={{ height: "70px" }}>
-                <UserChart salesData={data.salesData} />
               </div>
-            </Card>
-          </div>
-        ))}
-      </div>
-    );
-  };
+            </CardBody>
+            <div className="mt-3 mx-3" style={{ height: '70px' }}>
+              <UserChart salesData={data.salesData} />
+            </div>
+          </Card>
+        </div>
+      ))}
+    </div>
+  )
 
   return (
     <div>
       {tpSalesCard()}
       <Card className="mb-4">
         <CardBody>
-					<h4 className="mb-0">Third party Sales</h4>
+          <h4 className="mb-0">Third party Sales</h4>
           <StackedChart />
         </CardBody>
       </Card>
@@ -74,7 +66,7 @@ export default async function Page() {
         <div className="col-sm-6 col-lg-4">
           <Card
             className="mb-4"
-            style={{ "--bs-card-cap-bg": "#3b5998" } as React.CSSProperties}
+            style={{ '--bs-card-cap-bg': '#3b5998' } as React.CSSProperties}
           >
             <CardHeader className="d-flex justify-content-center align-items-center">
               <FontAwesomeIcon
@@ -107,7 +99,7 @@ export default async function Page() {
         <div className="col-sm-6 col-lg-4">
           <Card
             className="mb-4"
-            style={{ "--bs-card-cap-bg": "#00aced" } as React.CSSProperties}
+            style={{ '--bs-card-cap-bg': '#00aced' } as React.CSSProperties}
           >
             <CardHeader className="d-flex justify-content-center align-items-center">
               <FontAwesomeIcon
@@ -140,7 +132,7 @@ export default async function Page() {
         <div className="col-sm-6 col-lg-4">
           <Card
             className="mb-4"
-            style={{ "--bs-card-cap-bg": "#4875b4" } as React.CSSProperties}
+            style={{ '--bs-card-cap-bg': '#4875b4' } as React.CSSProperties}
           >
             <CardHeader className="d-flex justify-content-center align-items-center">
               <FontAwesomeIcon
@@ -188,12 +180,18 @@ export default async function Page() {
                     </tr>
                   </thead>
                   <tbody>
-										{categorySales.map(itemData => <tr className="align-middle" style={{padding: '5px'}}>
-											<td>{itemData?.name}</td>
-											<td>{itemData?.qty}</td>
-											<td>{itemData?.percentage}</td>
-											<td>{itemData?.totalSales}</td>
-										</tr>)}
+                    {categorySales.map((itemData) => (
+                      <tr
+                        className="align-middle"
+                        style={{ padding: '5px' }}
+                        key={Math.random()}
+                      >
+                        <td>{itemData?.name}</td>
+                        <td>{itemData?.qty}</td>
+                        <td>{itemData?.percentage}</td>
+                        <td>{itemData?.totalSales}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -202,5 +200,5 @@ export default async function Page() {
         </div>
       </div>
     </div>
-  );
+  )
 }

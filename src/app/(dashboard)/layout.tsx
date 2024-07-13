@@ -1,11 +1,11 @@
-import { Container } from "react-bootstrap";
-import React from "react";
-import SidebarProvider from "@/components/Layout/Dashboard/SidebarProvider";
-import SidebarOverlay from "@/components/Layout/Dashboard/Sidebar/SidebarOverlay";
-import Sidebar from "@/components/Layout/Dashboard/Sidebar/Sidebar";
-import SidebarNav from "@/components/Layout/Dashboard/Sidebar/SidebarNav";
-import Header from "@/components/Layout/Dashboard/Header/Header";
-import Footer from "@/components/Layout/Dashboard/Footer/Footer";
+import { Container } from 'react-bootstrap'
+import React from 'react'
+import SidebarProvider from '@/components/Layout/Dashboard/SidebarProvider'
+import SidebarOverlay from '@/components/Layout/Dashboard/Sidebar/SidebarOverlay'
+import Sidebar from '@/components/Layout/Dashboard/Sidebar/Sidebar'
+import SidebarNav from '@/components/Layout/Dashboard/Sidebar/SidebarNav'
+import Header from '@/components/Layout/Dashboard/Header/Header'
+import Footer from '@/components/Layout/Dashboard/Footer/Footer'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -27,5 +27,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <SidebarOverlay />
     </SidebarProvider>
-  );
+  )
 }
