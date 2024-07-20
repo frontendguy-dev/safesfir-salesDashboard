@@ -1,6 +1,8 @@
+// eslint-disable-next-line eslint-comments/disable-enable-pair
+/* eslint-disable react/jsx-one-expression-per-line */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
-import { Card, CardBody, CardHeader } from 'react-bootstrap'
+import { Card, CardBody, CardFooter, CardHeader } from 'react-bootstrap'
 import {
   faFacebookF,
   faLinkedinIn,
@@ -9,8 +11,22 @@ import {
 import React from 'react'
 import UserChart from '@/components/Page/Dashboard/UserChart'
 import { getDictionary } from '@/locales/dictionary'
-import { categorySales, totalSales } from '@/constants/data'
+import {
+  bottomSellingItems,
+  topSellingItems,
+  totalSales,
+} from '@/constants/data'
 import { StackedChart } from '@/components/Page/Dashboard/StackedChart'
+import PieChart from '@/components/Page/Dashboard/PieChart'
+import {
+  CTable,
+  CTableHead,
+  CTableBody,
+  CTableHeaderCell,
+  CTableDataCell,
+  CTableRow,
+} from '@coreui/react'
+import BarChart from '@/components/Page/Dashboard/BarChart'
 
 export default async function Page() {
   const dict = await getDictionary()
@@ -30,9 +46,7 @@ export default async function Page() {
                 <div className="fs-4 fw-semibold">
                   {data.totalSales}
                   <span className="fs-6 ms-2 fw-normal">
-                    (
-                    {data.deviation}
-                    %
+                    ({data.deviation}%
                     {data.deviation < 0 ? (
                       <FontAwesomeIcon icon={faArrowDown} fixedWidth />
                     ) : (
@@ -61,7 +75,6 @@ export default async function Page() {
           <StackedChart />
         </CardBody>
       </Card>
-
       <div className="row">
         <div className="col-sm-6 col-lg-4">
           <Card
@@ -163,42 +176,70 @@ export default async function Page() {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-md-12">
-          <Card>
-            <CardHeader>Sales by category</CardHeader>
-            <CardBody>
-              <br />
+      <Card style={{ height: '100%' }}>
+        <CardBody>
+          <div className="row">
+            <div className="col-md-6">
+              <PieChart />
+            </div>
+            <div className="col-md-6">
+              <h4>Top selling items</h4>
               <div className="table-responsive">
-                <table className="table border mb-0">
-                  <thead className="fw-semibold">
-                    <tr className="align-middle table-light dark:table-dark">
-                      <th>Category</th>
-                      <th>Quantity</th>
-                      <th>Percentage sales</th>
-                      <th>Total amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {categorySales.map((itemData) => (
-                      <tr
-                        className="align-middle"
-                        style={{ padding: '5px' }}
-                        key={Math.random()}
-                      >
-                        <td>{itemData?.name}</td>
-                        <td>{itemData?.qty}</td>
-                        <td>{itemData?.percentage}</td>
-                        <td>{itemData?.totalSales}</td>
-                      </tr>
+                <CTable color="success" striped bordered>
+                  <CTableHead>
+                    <CTableRow>
+                      <CTableHeaderCell>Category</CTableHeaderCell>
+                      <CTableHeaderCell>Percentage sales</CTableHeaderCell>
+                      <CTableHeaderCell>Total amount</CTableHeaderCell>
+                    </CTableRow>
+                  </CTableHead>
+                  <CTableBody>
+                    {topSellingItems().map((itemData) => (
+                      <CTableRow key={Math.random()}>
+                        <CTableDataCell>{itemData?.name}</CTableDataCell>
+                        <CTableDataCell>{itemData?.percentage}</CTableDataCell>
+                        <CTableDataCell>{itemData?.totalSales}</CTableDataCell>
+                      </CTableRow>
                     ))}
-                  </tbody>
-                </table>
+                  </CTableBody>
+                </CTable>
               </div>
-            </CardBody>
-          </Card>
-        </div>
-      </div>
+              <br />
+              <h4>Bottom selling items</h4>
+              <div className="table-responsive">
+                <CTable color="warning" striped bordered>
+                  <CTableHead>
+                    <CTableRow>
+                      <CTableHeaderCell>Category</CTableHeaderCell>
+                      <CTableHeaderCell>Percentage sales</CTableHeaderCell>
+                      <CTableHeaderCell>Total amount</CTableHeaderCell>
+                    </CTableRow>
+                  </CTableHead>
+                  <CTableBody>
+                    {bottomSellingItems().map((itemData) => (
+                      <CTableRow key={Math.random()}>
+                        <CTableDataCell>{itemData?.name}</CTableDataCell>
+                        <CTableDataCell>{itemData?.percentage}</CTableDataCell>
+                        <CTableDataCell>{itemData?.totalSales}</CTableDataCell>
+                      </CTableRow>
+                    ))}
+                  </CTableBody>
+                </CTable>
+              </div>
+            </div>
+          </div>
+        </CardBody>
+      </Card>
+      <br />
+      <Card>
+        <CardBody>
+          <h4>Revenue</h4>
+          <BarChart />
+        </CardBody>
+        <CardFooter>
+          <h6>Total sales: $951.9</h6>
+        </CardFooter>
+      </Card>
     </div>
   )
 }

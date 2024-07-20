@@ -1,5 +1,3 @@
-// eslint-disable-next-line eslint-comments/disable-enable-pair
-/* eslint-disable no-sparse-arrays */
 export const totalSales = [
   {
     name: 'DoorDash',
@@ -63,7 +61,7 @@ export const categorySales = [
     qty: 24,
     percentage: 17.16,
     totalSales: 274.73,
-  },,
+  },
   {
     name: 'Make a meal',
     qty: 8,
@@ -125,3 +123,14 @@ export const categorySales = [
     totalSales: 116.88,
   },
 ]
+
+export const topSellingItems = () =>
+  // eslint-disable-next-line implicit-arrow-linebreak
+  categorySales.sort((a, b) => b.totalSales - a.totalSales).slice(0, 5)
+
+export const bottomSellingItems = () =>
+  // eslint-disable-next-line implicit-arrow-linebreak
+  categorySales
+    .sort((a, b) => a.totalSales - b.totalSales)
+    .slice(0, 5)
+    .sort((a, b) => b.totalSales - a.totalSales)

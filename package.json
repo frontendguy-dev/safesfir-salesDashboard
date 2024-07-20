@@ -12,6 +12,8 @@
     "test": "start-server-and-test dev http://localhost:3000 cypress:run"
   },
   "dependencies": {
+    "@coreui/coreui": "^5.1.0",
+    "@coreui/react": "^5.1.0",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
